@@ -1,0 +1,12 @@
+:root {
+    --main-gradient: linear-gradient(45deg, var(--main-red), var(--main-blue));
+    --back-gradient: linear-gradient(45deg, var(--back-red), var(--back-blue));
+
+    --main-red: rgba(242, 133, 133, 1.0);
+    --back-red: rgba(242, 133, 133, 0.3);
+    
+    --main-blue: rgba(157, 155, 255, 1.0);
+    --back-blue: rgba(157, 155, 255, 0.3);
+
+    --border-color: rgb(97, 97, 97);
+}

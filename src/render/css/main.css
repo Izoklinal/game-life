@@ -1,0 +1,9 @@
+@import "base/_variables.css";
+@import "components/import-components.css";
+
+body {
+    display: block;
+    padding: 0;
+    margin: 0;    
+    background: var(--back-gradient);
+}
