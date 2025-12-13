@@ -1,3 +1,5 @@
+import { initTableArray, tableSize, GameRules } from "./game.js";
+
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -7,7 +9,8 @@ const height = canvas.clientHeight;
 canvas.width = width;
 canvas.height = height;
 
-const rowCount = 20;
+const size = getRectSize(width, height);
+const cellSize = getCellSize(size, tableSize);
 
 function getRectSize(width, height) {
     if (width < height) {
@@ -17,27 +20,37 @@ function getRectSize(width, height) {
     }
 }
 
-function getStep(size, rowCount) {
-    return size / rowCount;
+function getCellSize(size, tableSize) {
+    return size / tableSize;
 }
 
 export function drawGrid() {
     ctx.strokeStyle = 'gray';
-    ctx.lineWidth = 1;
-
-    const size = getRectSize(width, height);
-    const step = getStep(size, rowCount);
-
-    for (let x = 0; x <= size; x += step) {
+    ctx.lineWidth = 1;    
+    for (let x = 0; x <= size; x += cellSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
         ctx.lineTo(x, size);
         ctx.stroke();
     }
-    for (let y = 0; y <= size; y += step) {
+    for (let y = 0; y <= size; y += cellSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(size, y);
         ctx.stroke();
     }
 }
+
+export function renderTable(grid) {
+    for (let y = 0; y < tableSize; y++) {
+        for (let x = 0; x < tableSize; x++) {
+            if (grid[x][y] === true) {
+                ctx.fillStyle = 'black';
+            } else {
+                ctx.fillStyle = 'white';
+            }
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+    }
+}
+
