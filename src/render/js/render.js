@@ -44,7 +44,7 @@ export function drawGrid() {
 export function renderTable(grid) {
     for (let y = 0; y < tableSize; y++) {
         for (let x = 0; x < tableSize; x++) {
-            if (grid[x][y] === true) {
+            if (grid[y][x] === true) {
                 ctx.fillStyle = 'black';
             } else {
                 ctx.fillStyle = 'white';

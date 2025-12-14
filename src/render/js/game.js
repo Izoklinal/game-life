@@ -1,5 +1,5 @@
 export let tableSize = 50;
-export let chanceOfAlive = 0.2;
+export let chanceOfAlive = 0.3;
 
 export const GameRules = {
     needToBirth: 3,
@@ -24,13 +24,13 @@ export function compareData(oldGrid) {
     for (let y = 0; y < tableSize; y++) {
         for (let x = 0; x < tableSize; x++) {
             const _countAlive = countAlive(oldGrid, x, y);
-            if (oldGrid[x][y] === true) {
-                if (_countAlive < GameRules.minToLive && _countAlive > GameRules.maxToLive) {
-                    newGrid[x][y] = false;
+            if (oldGrid[y][x] === true) {
+                if (_countAlive >= GameRules.minToLive && _countAlive <= GameRules.maxToLive) {
+                    newGrid[y][x] = true;
                 }
             } else {
                 if (_countAlive === GameRules.needToBirth) {
-                    newGrid[x][y] = true;
+                    newGrid[y][x] = true;
                 }
             }
         }
@@ -62,7 +62,7 @@ function countAlive(oldGrid, x, y) {
         for (let _x = xFrom; _x <= xTo; _x++) {
             if (_x === x && _y === y) 
                 continue;
-            if (oldGrid[_x][_y] === true) 
+            if (oldGrid[_y][_x] === true) 
                 count++;
         }
     }
