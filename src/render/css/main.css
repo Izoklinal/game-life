@@ -5,5 +5,15 @@ body {
     display: block;
     padding: 0;
     margin: 0;    
-    background: var(--back-gradient);
+    background: gray;
+}
+
+.cont-main {
+    display: flex;
+    padding: 2.4vh;
+    gap: 2.4vh
+}
+
+h1 {
+    text-align: center;
 }

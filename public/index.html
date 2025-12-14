@@ -6,10 +6,40 @@
     <link rel="stylesheet" href="../src/render/css/main.css">
 </head>
 <body>
-    <div class="controls-panel"></div>
-    <div class="cont-canvas">
-        <canvas id="game-canvas" class="game-canvas"></canvas>
+    <div class="cont-main">
+        <div class="cont-canvas">
+            <canvas id="game-canvas" class="game-canvas"></canvas>
+        </div>
+
+        <div class="cont-settings">
+            <h1>Настройки игры</h1>
+            
+            <div>
+                <label>Размер поля:</label>
+                <div class="cont-option">
+                    <input id="range-size" class="input-range" type="range" min="3" max="100" step="1" value="100">
+                    <input id="input-size" class="input-number" type="number" value="100" max="100">
+                </div>
+            </div>
+
+            <div>
+                <label>Шанс появления живой клетки:</label>
+                <div class="cont-option">
+                    <input id="range-chance" class="input-range" type="range" min="0.0" max="1.0" step="0.01" value="0.3">
+                    <input id="input-chance" class="input-number" type="number" value="0.3">
+                </div>
+            </div>
+
+            <div>
+                <label>Скорость итераций:</label>
+                <div class="cont-option">
+                    <input id="range-speed" class="input-range" type="range" min="0.1" max="10.0" step="0.1" value="0.1">
+                    <input id="input-speed" class="input-number" type="number" value="0.1">
+                </div>
+            </div>
+        </div>
     </div>
+    
 </body>
 <script type="module" src="../src/render/js/main.js"></script>
 </html>

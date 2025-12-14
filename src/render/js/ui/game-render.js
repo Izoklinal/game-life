@@ -1,4 +1,4 @@
-import { initTableArray, tableSize, GameRules } from "./game.js";
+import { tableSize } from "../logic/game.js";
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');

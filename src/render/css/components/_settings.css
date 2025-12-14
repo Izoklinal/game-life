@@ -1,0 +1,15 @@
+.cont-settings {
+    width: 100%;
+}
+
+.input-range {
+    width: 90%;
+}
+.input-number {
+    width: 10%;
+    margin: 0 20px;
+    text-align: end;    
+}
+.cont-option {
+    display: flex;
+}

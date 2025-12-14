@@ -1,4 +1,4 @@
-export let tableSize = 50;
+export let tableSize = 100;
 export let chanceOfAlive = 0.3;
 
 export const GameRules = {
