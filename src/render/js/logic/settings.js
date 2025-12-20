@@ -28,9 +28,7 @@ export function initSettingsLogic() {
         pause();
     });
     resumeBtn.addEventListener('click', () => {
-        run = setInterval(() => {
-            stepAhead();   
-        }, 100);  
+        resume();
     });
 
     stepAheadBtn.addEventListener('click', () => {
@@ -41,18 +39,37 @@ export function initSettingsLogic() {
     });
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-            pause();
-            stepAhead();
+        // if (e.key === 'ArrowRight') {
+        //     pause();
+        //     stepAhead();
+        // }
+        // if (e.key === 'ArrowLeft') {
+        //     pause();
+        //     stepBack();
+        // }
+        switch (e.key) {
+            case "ArrowRight":
+                pause();
+                stepAhead();
+                break;
+            case "ArrowLeft":
+                pause();
+                stepBack();
+                break;
+            case " ":
+                e.preventDefault();
+                pause();
+                resume();
+                break;
         }
-        if (e.key === 'ArrowLeft') {
-            pause();
-            stepBack();
-        }
-        
     });
 }
 
+function resume() {
+    run = setInterval(() => {
+        stepAhead();   
+    }, 100);  
+}
 function pause() {
     clearTimeout(run);
 }
