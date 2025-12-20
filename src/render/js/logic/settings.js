@@ -1,4 +1,4 @@
-import { compareData, createRandomTable } from "./game.js";
+import { compareData, createRandomTable, history } from "./game.js";
 import { renderTable, drawGrid } from "../ui/game-render.js";
 
 export let tableSize = 100;
@@ -9,7 +9,8 @@ export let iterations = 0;
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
 const resumeBtn = document.getElementById('resume-btn');
-const stepBtn = document.getElementById('step-btn');
+const stepAheadBtn = document.getElementById('step-ahead-btn');
+const stepBackBtn = document.getElementById('step-back-btn');
 
 let grid = createRandomTable();
 let run;
@@ -20,23 +21,50 @@ export function initSettingsLogic() {
         iterations = 0;
 
         run = setInterval(() => {
-            calcStep();
+            stepAhead();
         }, 100);        
     });
     pauseBtn.addEventListener('click', () => {
-        clearTimeout(run);
+        pause();
     });
     resumeBtn.addEventListener('click', () => {
         run = setInterval(() => {
-            calcStep();   
+            stepAhead();   
         }, 100);  
     });
-    stepBtn.addEventListener('click', () => {
-        calcStep();
+
+    stepAheadBtn.addEventListener('click', () => {
+        stepAhead();
+    });    
+    stepBackBtn.addEventListener('click', () => {
+        stepBack();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            pause();
+            stepAhead();
+        }
+        if (e.key === 'ArrowLeft') {
+            pause();
+            stepBack();
+        }
+        
     });
 }
 
-function calcStep() {
+function pause() {
+    clearTimeout(run);
+}
+function stepBack() {
+    const gridItem = history.pop();
+    if (!gridItem) return;
+    grid = gridItem;
+    renderTable(grid);
+    drawGrid();
+    iterations--;
+}
+function stepAhead() {
     grid = compareData(grid);
     renderTable(grid);
     drawGrid();

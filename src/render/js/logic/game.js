@@ -1,5 +1,7 @@
 import { chanceOfAlive, tableSize } from "./settings.js";
 
+export const history = [];
+
 export const GameRules = {
     needToBirth: 3,
     minToLive: 2,
@@ -19,6 +21,7 @@ export function createRandomTable() {
 }
 
 export function compareData(oldGrid) {
+    history.push(oldGrid);
     const newGrid = initTableArray();
     for (let y = 0; y < tableSize; y++) {
         for (let x = 0; x < tableSize; x++) {
