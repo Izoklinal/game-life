@@ -8,7 +8,7 @@ export const GameRules = {
     maxToLive: 3
 };
 
-export function initTableArray() {
+export function createEmptyTable() {
     return Array.from({length: tableSize}, () => 
         Array.from({length: tableSize}, () => false)
     );
@@ -22,7 +22,7 @@ export function createRandomTable() {
 
 export function compareData(oldGrid) {
     history.push(oldGrid);
-    const newGrid = initTableArray();
+    const newGrid = createEmptyTable();
     for (let y = 0; y < tableSize; y++) {
         for (let x = 0; x < tableSize; x++) {
             const _countAlive = countAlive(oldGrid, x, y);

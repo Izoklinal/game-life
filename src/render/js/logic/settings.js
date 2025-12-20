@@ -41,14 +41,6 @@ export function initSettingsLogic() {
     });
 
     document.addEventListener('keydown', (e) => {
-        // if (e.key === 'ArrowRight') {
-        //     pause();
-        //     stepAhead();
-        // }
-        // if (e.key === 'ArrowLeft') {
-        //     pause();
-        //     stepBack();
-        // }
         switch (e.key) {
             case "ArrowRight":
                 pause();
