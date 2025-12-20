@@ -6,6 +6,8 @@ export let chanceOfAlive = 0.3;
 export let frameMS = 100;
 export let iterations = 0;
 
+let isPaused = false;
+
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
 const resumeBtn = document.getElementById('resume-btn');
@@ -58,8 +60,13 @@ export function initSettingsLogic() {
                 break;
             case " ":
                 e.preventDefault();
-                pause();
-                resume();
+                if (isPaused) {
+                    resume();
+                    isPaused = false;
+                } else {
+                    pause();
+                    isPaused = true;
+                }
                 break;
         }
     });
