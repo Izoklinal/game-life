@@ -1,5 +1,4 @@
-export let tableSize = 100;
-export let chanceOfAlive = 0.3;
+import { chanceOfAlive, tableSize } from "./settings.js";
 
 export const GameRules = {
     needToBirth: 3,

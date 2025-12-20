@@ -1,19 +1,10 @@
 import { drawGrid, renderTable } from "./ui/game-render.js";
 import { compareData, createRandomTable } from "./logic/game.js";
 import { initSettings } from "./ui/settings-render.js";
+import { initSettingsLogic } from "./logic/settings.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    let grid = createRandomTable();
-    renderTable(grid);
+document.addEventListener('DOMContentLoaded', () => {    
     drawGrid();
     initSettings();
-    
-    let iterations = 0;
-    const gameRun = setInterval(() => {
-        grid = compareData(grid);
-        renderTable(grid);
-        drawGrid();
-        iterations++;
-        console.log(iterations);
-    }, 100);
+    initSettingsLogic();
 })
