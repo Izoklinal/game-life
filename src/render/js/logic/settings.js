@@ -1,30 +1,30 @@
-import { compareData, createRandomTable, history } from "./game.js";
+import { compareData, createRandomTable, history, checkIfEnded } from "./game.js";
 import { renderTable, drawGrid } from "../ui/game-render.js";
 
 export let tableSize = 100;
+export function setTableSize(value) {
+    tableSize = value;
+}
 export let chanceOfAlive = 0.3;
 export let frameMS = 100;
 export let iterations = 0;
 
 let isPaused = false;
+let isStarted = false;
 
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
 const resumeBtn = document.getElementById('resume-btn');
 const stepAheadBtn = document.getElementById('step-ahead-btn');
 const stepBackBtn = document.getElementById('step-back-btn');
+const iterationCount = document.getElementById('iteration-count');
 
-let grid = createRandomTable();
+let grid = [];
 let run;
 
 export function initSettingsLogic() {
     startBtn.addEventListener('click', () => {
-        renderTable(grid);
-        iterations = 0;
-
-        run = setInterval(() => {
-            stepAhead();
-        }, 100);        
+        start();
     });
     pauseBtn.addEventListener('click', () => {
         pause();
@@ -52,6 +52,12 @@ export function initSettingsLogic() {
                 break;
             case " ":
                 e.preventDefault();
+
+                if (!isStarted) {
+                    start();
+                    break;
+                }
+
                 if (isPaused) {
                     resume();
                     isPaused = false;
@@ -64,13 +70,29 @@ export function initSettingsLogic() {
     });
 }
 
+function start() {
+    pause();
+    isStarted = true;
+    isPaused = false;
+    grid = createRandomTable();
+    renderTable(grid);
+    iterations = 0;
+    iterationCount.innerHTML = iterations;
+
+    resume();
+}
+
 function resume() {
     run = setInterval(() => {
-        stepAhead();   
-    }, 100);  
+        stepAhead();
+        if (checkIfEnded()) {
+            pause();
+        }
+    }, 100);
 }
 function pause() {
     clearTimeout(run);
+    run = null;
 }
 function stepBack() {
     const gridItem = history.pop();
@@ -79,10 +101,12 @@ function stepBack() {
     renderTable(grid);
     drawGrid();
     iterations--;
+    iterationCount.innerHTML = iterations;
 }
 function stepAhead() {
     grid = compareData(grid);
     renderTable(grid);
     drawGrid();
     iterations++;
+    iterationCount.innerHTML = iterations;
 }

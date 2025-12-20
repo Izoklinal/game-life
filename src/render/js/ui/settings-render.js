@@ -1,3 +1,5 @@
+import { resize } from "./game-render.js";
+
 export const rangeSize = document.getElementById('range-size');
 export const inputSize = document.getElementById('input-size');
 
@@ -9,6 +11,12 @@ export const inputSpeed = document.getElementById('input-speed');
 
 export function initSettings() {
     chainInputs(rangeSize, inputSize);
+    rangeSize.addEventListener('input', () => {
+        resize(rangeSize.value);
+    });
+    inputSize.addEventListener('input', () => {
+        resize(rangeSize.value);
+    });
     chainInputs(rangeChance, inputChance);
     chainInputs(rangeSpeed, inputSpeed);
 }

@@ -20,6 +20,33 @@ export function createRandomTable() {
     );
 }
 
+export function checkIfEnded() {
+    const l = history.length;
+    const cur = history[l - 1];
+    
+    let prev = history[l - 2];
+    if (compareGrids(l, cur, prev)) return true;
+    prev = null;
+
+    prev = history[l - 3];
+    if (compareGrids(l, cur, prev)) return true;
+    prev = null;
+
+    prev = history[l - 4];
+    if (compareGrids(l, cur, prev)) return true;
+}
+
+function compareGrids(l, grid1, grid2) {
+    for (let y = 0; y < l; y++) {
+        for (let x = 0; x < l; x++) {
+            if (grid1[y][x] !== grid2[y][x]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function compareData(oldGrid) {
     history.push(oldGrid);
     const newGrid = createEmptyTable();

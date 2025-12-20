@@ -1,4 +1,4 @@
-import { tableSize } from "../logic/settings.js";
+import { setTableSize, tableSize } from "../logic/settings.js";
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
@@ -10,7 +10,15 @@ canvas.width = width;
 canvas.height = height;
 
 const size = getRectSize(width, height);
-const cellSize = getCellSize(size, tableSize);
+let cellSize = getCellSize(size, tableSize);
+
+export function resize(value) {
+    setTableSize(value);
+    cellSize = getCellSize(size, tableSize);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawGrid();
+}
 
 function getRectSize(width, height) {
     if (width < height) {
