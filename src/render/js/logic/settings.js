@@ -6,6 +6,9 @@ export function setTableSize(value) {
     tableSize = value;
 }
 export let chanceOfAlive = 0.3;
+export function setChanceOfAlive(value) {
+    chanceOfAlive = value;
+}
 export let frameMS = 100;
 export let iterations = 0;
 

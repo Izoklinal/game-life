@@ -1,27 +1,37 @@
 import { resize } from "./game-render.js";
-import { setIsStarted } from "../logic/settings.js";
+import { setIsStarted, setChanceOfAlive } from "../logic/settings.js";
 
-export const rangeSize = document.getElementById('range-size');
-export const inputSize = document.getElementById('input-size');
+const sizeRange = document.getElementById('range-size');
+const sizeInput = document.getElementById('input-size');
 
-export const rangeChance = document.getElementById('range-chance');
-export const inputChance = document.getElementById('input-chance');
+const chanceRange = document.getElementById('range-chance');
+const chanceInput = document.getElementById('input-chance');
 
-export const rangeSpeed = document.getElementById('range-speed');
-export const inputSpeed = document.getElementById('input-speed');
+const speedRange = document.getElementById('range-speed');
+const speedInput = document.getElementById('input-speed');
 
 export function initSettings() {
-    chainInputs(rangeSize, inputSize);
-    rangeSize.addEventListener('input', () => {
-        resize(rangeSize.value);
+    sizeRange.addEventListener('input', () => {
+        sizeInput.value = sizeRange.value;
+        resize(sizeRange.value);
         setIsStarted(false);
     });
-    inputSize.addEventListener('input', () => {
-        resize(rangeSize.value);
+    sizeInput.addEventListener('input', () => {
+        sizeRange.value = sizeInput.value;
+        resize(sizeRange.value);
         setIsStarted(false);
     });
-    chainInputs(rangeChance, inputChance);
-    chainInputs(rangeSpeed, inputSpeed);
+
+    chanceInput.addEventListener('input', () => {
+        chanceRange.value = chanceInput.value;
+        setIsStarted(false);
+        setChanceOfAlive(chanceInput.value);
+    });
+    chanceRange.addEventListener('input', () => {
+        chanceInput.value = chanceRange.value;
+        setIsStarted(false);
+        setChanceOfAlive(chanceRange.value);
+    });
 }
 
 function chainInputs(input_1, input_2) {
