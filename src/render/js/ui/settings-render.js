@@ -1,4 +1,5 @@
 import { resize } from "./game-render.js";
+import { setIsStarted } from "../logic/settings.js";
 
 export const rangeSize = document.getElementById('range-size');
 export const inputSize = document.getElementById('input-size');
@@ -13,9 +14,11 @@ export function initSettings() {
     chainInputs(rangeSize, inputSize);
     rangeSize.addEventListener('input', () => {
         resize(rangeSize.value);
+        setIsStarted(false);
     });
     inputSize.addEventListener('input', () => {
         resize(rangeSize.value);
+        setIsStarted(false);
     });
     chainInputs(rangeChance, inputChance);
     chainInputs(rangeSpeed, inputSpeed);

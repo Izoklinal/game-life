@@ -11,6 +11,9 @@ export let iterations = 0;
 
 let isPaused = false;
 let isStarted = false;
+export function setIsStarted(value) {
+    isStarted = value;
+}
 
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');

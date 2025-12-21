@@ -22,23 +22,30 @@ export function createRandomTable() {
 
 export function checkIfEnded() {
     const l = history.length;
+
+    if (l <= 3)
+        return false;
+
     const cur = history[l - 1];
-    
+
     let prev = history[l - 2];
-    if (compareGrids(l, cur, prev)) return true;
+    if (!compareGrids(l, cur, prev)) return true;
     prev = null;
 
     prev = history[l - 3];
-    if (compareGrids(l, cur, prev)) return true;
+    if (!compareGrids(l, cur, prev)) return true;
     prev = null;
 
     prev = history[l - 4];
-    if (compareGrids(l, cur, prev)) return true;
+    if (!compareGrids(l, cur, prev)) return true;
+    return false;
 }
 
+// true if not equal
+// false if equal
 function compareGrids(l, grid1, grid2) {
-    for (let y = 0; y < l; y++) {
-        for (let x = 0; x < l; x++) {
+    for (let y = 0; y < grid1.length; y++) {
+        for (let x = 0; x < grid1.length; x++) {
             if (grid1[y][x] !== grid2[y][x]) {
                 return true;
             }
