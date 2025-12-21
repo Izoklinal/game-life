@@ -1,7 +1,7 @@
 import { setTableSize, tableSize } from "../logic/settings.js";
 
-const canvas = document.getElementById('game-canvas');
-const ctx = canvas.getContext('2d');
+export const canvas = document.getElementById('game-canvas');
+export const ctx = canvas.getContext('2d');
 
 const width = canvas.clientWidth;
 const height = canvas.clientHeight;
@@ -9,8 +9,8 @@ const height = canvas.clientHeight;
 canvas.width = width;
 canvas.height = height;
 
-const size = getRectSize(width, height);
-let cellSize = getCellSize(size, tableSize);
+export const size = getRectSize(width, height);
+export let cellSize = getCellSize(size, tableSize);
 
 export function resize(value) {
     setTableSize(value);

@@ -1,4 +1,4 @@
-import { compareData, createRandomTable, history, checkIfEnded } from "./game.js";
+import { compareData, createRandomTable, history, checkIfEnded, createEmptyTable } from "./game.js";
 import { renderTable, drawGrid } from "../ui/game-render.js";
 
 let gameSpeedMS = 100;
@@ -17,6 +17,9 @@ export let frameMS = 100;
 export let iterations = 0;
 
 let isPaused = false;
+export function setIsPaused(value) {
+    isPaused = value;
+}
 let isStarted = false;
 export function setIsStarted(value) {
     isStarted = value;
@@ -29,7 +32,16 @@ const stepAheadBtn = document.getElementById('step-ahead-btn');
 const stepBackBtn = document.getElementById('step-back-btn');
 const iterationCount = document.getElementById('iteration-count');
 
-let grid = [];
+export let grid = [];
+export function setGrid(x, y) {
+    if (grid === null || grid.length === 0) {
+        grid = createEmptyTable();
+    }
+    grid[y][x] = !grid[y][x];
+    renderTable(grid);
+    drawGrid();
+    isStarted = true;
+}
 let run;
 
 export function initSettingsLogic() {
