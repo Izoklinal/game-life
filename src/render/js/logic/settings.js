@@ -1,6 +1,10 @@
 import { compareData, createRandomTable, history, checkIfEnded } from "./game.js";
 import { renderTable, drawGrid } from "../ui/game-render.js";
 
+let gameSpeedMS = 100;
+export function setGameSpeed(value) {
+    gameSpeedMS = value;
+}
 export let tableSize = 100;
 export function setTableSize(value) {
     tableSize = value;
@@ -88,15 +92,15 @@ function start() {
     resume();
 }
 
-function resume() {
+export function resume() {
     run = setInterval(() => {
         stepAhead();
         if (checkIfEnded()) {
             pause();
         }
-    }, 100);
+    }, gameSpeedMS);
 }
-function pause() {
+export function pause() {
     clearTimeout(run);
     run = null;
 }

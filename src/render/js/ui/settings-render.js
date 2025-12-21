@@ -1,5 +1,5 @@
 import { resize } from "./game-render.js";
-import { setIsStarted, setChanceOfAlive } from "../logic/settings.js";
+import { setIsStarted, setChanceOfAlive, setGameSpeed, pause, resume } from "../logic/settings.js";
 
 const sizeRange = document.getElementById('range-size');
 const sizeInput = document.getElementById('input-size');
@@ -32,13 +32,17 @@ export function initSettings() {
         setIsStarted(false);
         setChanceOfAlive(chanceRange.value);
     });
-}
 
-function chainInputs(input_1, input_2) {
-    input_1.addEventListener('input', () => {
-        input_2.value = input_1.value;
+    speedInput.addEventListener('input', () => {
+        speedRange.value = speedInput.value;
+        setGameSpeed(speedInput.value * 100);
+        pause();
+        resume();
     });
-    input_2.addEventListener('input', () => {
-        input_1.value = input_2.value;
+    speedRange.addEventListener('input', () => {
+        speedInput.value = speedRange.value;
+        setGameSpeed(speedRange.value * 100);
+        pause();
+        resume();
     });
 }
