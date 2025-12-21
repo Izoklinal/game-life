@@ -7,10 +7,27 @@ export function initDraw() {
     //     const coords = getCoords(e);
     //     setGrid(coords.xIndex, coords.yIndex);
     // });
-    canvas.addEventListener('click', (e) => {
+    canvas.addEventListener('mousedown', (e) => {
         setIsPaused(true);
-        const coords = getCoords(e);
-        setGrid(coords.xIndex, coords.yIndex);
+
+        let isRunning = true;
+        canvas.addEventListener('mouseup', () => {
+            isRunning = false;
+            console.log('up');
+        });
+
+        const existingsDraws = [];
+
+        let run = setInterval(() => {
+            if (!isRunning) {
+                clearTimeout(run);
+            }
+            const coords = getCoords(e);
+            if (!existingsDraws.includes(coords)) {                
+                setGrid(coords.xIndex, coords.yIndex);
+                existingsDraws.push(coords);
+            }
+        }, 100)
     });
 }
 

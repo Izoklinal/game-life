@@ -2,5 +2,5 @@
     width: 95vh;
     height: 95vh;
     border: 1px solid gray;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 4 L16 28 M4 16 L28 16" stroke="black" stroke-width="8" stroke-linecap="round"/><path d="M16 4 L16 28 M4 16 L28 16" stroke="white" stroke-width="4" stroke-linecap="round"/></svg>') 8 8, crosshair;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 4 L16 28 M4 16 L28 16" stroke="black" stroke-width="8" stroke-linecap="round"/><path d="M16 4 L16 28 M4 16 L28 16" stroke="white" stroke-width="4" stroke-linecap="round"/></svg>') 16 16, crosshair;
 }
